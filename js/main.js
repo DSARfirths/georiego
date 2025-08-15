@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p>Country 618, Piura 20001, Perú</p>
                         <p style="margin-top:10px;"><i class="fas fa-phone"></i> <strong>Cel:</strong> <a href="tel:+51993813122">993 813 122</a> / <a href="tel:+51966211673">966 211 673</a></p>
                         <p style="margin-top:10px;"><i class="fas fa-envelope"></i> <strong>Email:</strong></p>
-                        <p><a href="mailto:VENTASGEORIEGO@GMAIL.COM">VENTASGEORIEGO@GMAIL.COM</a></p>
+                        <p><a href="mailto:ventas@georiego.com">ventas@georiego.com</a></p>
                     </div>
                     <div class="footer-column footer-map" style="grid-column: span 2;">
                         <h4>Ubicación</h4>
