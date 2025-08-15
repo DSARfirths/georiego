@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </header>
     `;
 
-    // --- FOOTER CON MAPA Y DIRECCIÓN ACTUALIZADOS ---
+    // --- FOOTER CON MAPA CORREGIDO Y BOTÓN NUEVO ---
     const footerHTML = `
         <footer class="main-footer">
             <div class="container">
@@ -53,11 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p>Country 618, Piura 20001, Perú</p>
                         <p style="margin-top:10px;"><i class="fas fa-phone"></i> <strong>Cel:</strong> <a href="tel:+51993813122">993 813 122</a> / <a href="tel:+51966211673">966 211 673</a></p>
                         <p style="margin-top:10px;"><i class="fas fa-envelope"></i> <strong>Email:</strong></p>
-                        <p><a href="mailto: VENTASGEORIEGO@GMAIL.COM">VENTASGEORIEGO@GMAIL.COM</a></p>
+                        <p><a href="mailto:VENTASGEORIEGO@GMAIL.COM">VENTASGEORIEGO@GMAIL.COM</a></p>
                     </div>
                     <div class="footer-column footer-map" style="grid-column: span 2;">
                         <h4>Ubicación</h4>
-                        <iframe src="https://maps.google.com/?cid=16876145961176624709&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.749021203027!2d-80.63441342595919!3d-5.186982652431481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a1158567584cd%3A0x705c754d9c12b93a!2sCountry%20618%2C%20Piura%2020001%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1723149635957!5m2!1ses!2spe" 
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=-5.186987660884971,-80.6322384997946" class="btn-map" target="_blank">
+                            <i class="fas fa-directions"></i> ¿Cómo llegar?
+                        </a>
                     </div>
                 </div>
                 <div class="copyright">

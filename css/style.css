@@ -520,6 +520,29 @@ section {
     border: 0;
 }
 
+/* --- Estilo para el botón del mapa en el Footer --- */
+.btn-map {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: var(--primary-bright-blue);
+    color: var(--white-color);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-map:hover {
+    background-color: #2980b9; /* Un azul un poco más oscuro */
+}
+
+.btn-map i {
+    margin-right: 8px; /* Espacio entre el ícono y el texto */
+}
+
 
 /* --- Responsive Design --- */
 @media (max-width: 992px) {
