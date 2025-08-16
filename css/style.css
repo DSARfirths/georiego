@@ -357,9 +357,9 @@ section {
 }
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr); 
     gap: 30px;
-    margin-bottom: 30px;
+    align-items: start;
 }
 .footer-column h4 {
     color: var(--white-color);
@@ -513,6 +513,11 @@ section {
 }
 
 /* --- Estilo para el mapa en el Footer --- */
+.footer-map {
+    /* Hacemos que la columna del mapa ocupe 2 espacios */
+    grid-column: span 2; 
+}
+
 .footer-map iframe {
     width: 100%;
     height: 200px; /* Altura ajustada para el footer */
@@ -609,6 +614,12 @@ section {
         -moz-column-count: 1;
         -webkit-column-count: 1;
         column-count: 1;
+    }
+    .footer-content {
+        grid-template-columns: 1fr; /* Una sola columna en móviles */
+    }
+    .footer-map {
+        grid-column: span 1; /* El mapa ocupa toda la fila */
     }
 
 }

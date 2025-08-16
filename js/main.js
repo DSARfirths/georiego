@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p style="margin-top:10px;"><i class="fas fa-envelope"></i> <strong>Email:</strong></p>
                         <p><a href="mailto:ventas@georiego.com">ventas@georiego.com</a></p>
                     </div>
-                    <div class="footer-column footer-map" style="grid-column: span 2;">
+                    <div class="footer-column footer-map">
                         <h4>Ubicación</h4>
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.749021203027!2d-80.63441342595919!3d-5.186982652431481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a1158567584cd%3A0x705c754d9c12b93a!2sCountry%20618%2C%20Piura%2020001%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1723149635957!5m2!1ses!2spe" 
