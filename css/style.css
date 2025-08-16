@@ -339,3 +339,9 @@ section {
         right: 5px;
     }
 }
+/* --- Arreglo para el Placeholder del Formulario --- */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #888; /* Un color gris claro pero legible */
+    opacity: 1; /* Asegura que sea visible en todos los navegadores */
+}
