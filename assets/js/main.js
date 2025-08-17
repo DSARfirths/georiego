@@ -70,17 +70,36 @@ const setupServiceFilters = () => {
   const filterButtons = filterContainer.querySelectorAll('.filter-btn');
   const serviceCards = document.querySelectorAll('.service-card');
 
+  // Función para activar un filtro
+  const activateFilter = (filter) => {
+    filterButtons.forEach(btn => {
+      if (btn.dataset.filter === filter) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    serviceCards.forEach(card => {
+      card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
+    });
+  };
+
+  // Añadimos el evento de clic a cada botón
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
       const filter = button.dataset.filter;
-
-      serviceCards.forEach(card => {
-        card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
-      });
+      activateFilter(filter);
     });
   });
+
+  // ===== LÓGICA NUEVA: Revisar la URL al cargar la página =====
+  const currentHash = window.location.hash.substring(1); // Obtiene 'agro' o 'infraestructura'
+  if (currentHash === 'agro' || currentHash === 'infraestructura') {
+    activateFilter(currentHash);
+  } else {
+    activateFilter('all'); // Si no hay nada, muestra todo
+  }
 };
 
 /**
@@ -114,6 +133,32 @@ const setupLightbox = () => {
     });
   };
 
+const setupContactModal = () => {
+    const contactModal = document.getElementById('contact-modal');
+    if (!contactModal) return;
+
+    const openModalButtons = document.querySelectorAll('.header-cta, .cta-button, .cta-box .cta-button, .mobile-cta');
+    const closeModalButton = document.getElementById('modal-close-btn');
+    const modalOverlay = document.getElementById('modal-overlay');
+
+    const openModal = () => contactModal.classList.add('is-visible');
+    const closeModal = () => contactModal.classList.remove('is-visible');
+
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            // Prevenimos la navegación si el href es solo '#'
+            if (button.getAttribute('href') === '#') {
+                event.preventDefault();
+                openModal();
+            }
+        });
+    });
+
+    if (closeModalButton) closeModalButton.addEventListener('click', closeModal);
+    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+};
+
+
 /**
  * El bloque ÚNICO que se ejecuta cuando la página está lista.
  */
@@ -123,8 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
   loadComponent('#footer-placeholder', 'partials/footer.html');
   
   // Llamamos a todas las demás funciones de inicialización
-  setupMobileMenu();
   setupScrollAnimations();
   setupServiceFilters();
   setupLightbox();
+  setupContactModal();
 });

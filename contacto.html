@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Georiego</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="page-hero-section" style="background-image: url('https://images.pexels.com/photos/48148/document-business-macbook-pen-48148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+            <div class="page-hero-overlay"></div>
+            <div class="container">
+                <h1>Hablemos de tu Proyecto</h1>
+                <p>Completa el formulario y nuestro equipo de ingenieros se pondrá en contacto contigo.</p>
+            </div>
+        </section>
+
+        <section class="contact-page-section">
+            <div class="container">
+                <div class="contact-layout">
+                    <div class="contact-form-container">
+                        <h2>Formulario de Cotización</h2>
+                        <form action="URL_DE_TU_PROCESADOR_DE_FORMULARIO" method="POST">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="name">Nombre Completo *</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="company">Empresa / Fundo</label>
+                                    <input type="text" id="company" name="company">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Correo Electrónico *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Teléfono / WhatsApp *</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Servicio de Interés</label>
+                                <select id="service" name="service">
+                                    <option value="">Selecciona un servicio...</option>
+                                    <option value="riego_goteo">Riego Tecnificado por Goteo</option>
+                                    <option value="reservorios">Construcción de Reservorios</option>
+                                    <option value="automatizacion">Automatización y Control</option>
+                                    <option value="termofusion">Termofusión de Tuberías HDPE</option>
+                                    <option value="geomembrana">Impermeabilización con Geomembrana</option>
+                                    <option value="bombeo">Sistemas de Filtrado y Bombeo</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Detalles de tu proyecto *</label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="hero-button">Enviar Solicitud</button>
+                        </form>
+                    </div>
+                    <div class="contact-info-container">
+                        <h3>Información de Contacto</h3>
+                        <p>Si prefieres, puedes contactarnos directamente a través de estos canales.</p>
+                        
+                        <div class="contact-info-item">
+                            <h4><i class="fas fa-envelope"></i> Correo Electrónico</h4>
+                            <a href="mailto:ventas@georiego.com">ventas@georiego.com</a>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <h4><i class="fas fa-phone-alt"></i> Teléfonos</h4>
+                            <a href="tel:+51966211673">+51 966 211 673</a><br>
+                            <a href="tel:+51993813122">+51 993 813 122</a>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <h4><i class="fas fa-map-marker-alt"></i> Oficinas</h4>
+                            <p><strong>Piura (Principal):</strong><br> Dirección de Piura, Perú</p>
+                            <p><strong>Chiclayo (Sucursal):</strong><br> Dirección de Chiclayo, Perú</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <div class="contact-modal" id="contact-modal"></div>
+    <script src="assets/js/main.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script> </body>
+</html>
