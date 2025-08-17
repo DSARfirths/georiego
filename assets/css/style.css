@@ -48,7 +48,7 @@ body {
   position: relative;
   height: 75vh;
   min-height: 500px;
-  background-image: url('https://images.pexels.com/photos/440731/pexels-photo-440731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-image: url('assets/images/Reservorios \(6).jpg'); /* Cambia la URL a tu imagen de fondo */
   background-size: cover;
   background-position: center;
   display: flex;
@@ -393,11 +393,16 @@ body {
 }
 
 .header-logo {
-  font-family: var(--font-heading);
-  font-size: 2rem; /* 32px */
-  font-weight: 700;
-  color: var(--azul-georiego);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  /* Eliminamos los estilos de fuente que ya no se necesitan */
+}
+
+.header-logo img {
+  max-height: 45px; /* Altura máxima para el logo. Ajusta si es necesario */
+  width: auto;      /* Mantiene la proporción original de la imagen */
+  display: block;   /* Evita espacios extra debajo de la imagen */
 }
 
 .header-nav {
@@ -1350,7 +1355,7 @@ body.mobile-menu-is-open .mobile-menu {
 
 /* El botón de contacto dentro del menú */
 .mobile-menu .mobile-cta {
-    margin-top: auto; /* Empuja el botón al final */
+    margin-top: 2.5rem; /* <-- AJUSTE CLAVE: Un espacio fijo y visible */
     padding: 1rem;
     background-color: var(--azul-georiego);
     color: white !important;
