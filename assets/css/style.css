@@ -440,15 +440,18 @@ body {
 }
 
 .mobile-menu {
-  display: none; /* Empieza oculto */
-  position: absolute; /* Lo saca del flujo normal del documento */
-  top: 100%; /* Se posiciona justo debajo del header */
-  left: 0;
-  width: 100%;
-  background-color: white;
-  border-top: 1px solid #e5e7eb;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra para que destaque */
-  z-index: 999; /* Asegura que esté por encima del contenido */
+    display: none;
+    flex-direction: column; /* Ya estaba en la clase .is-open, lo movemos aquí */
+    position: fixed; /* Clave: lo fija a la ventana del navegador */
+    top: 5rem; /* Empieza justo donde termina el header (80px) */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 5rem); /* Clave: ocupa el 100% de la altura menos el header */
+    background-color: white;
+    z-index: 999;
+    padding: 1.5rem; /* Añadimos espacio interior */
+    overflow-y: auto; /* Permite scroll si hay muchos enlaces */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 /* Esta clase es la que nuestro JavaScript va a alternar */

@@ -17,6 +17,7 @@ const loadComponent = (selector, filePath) => {
       // Si acabamos de cargar el header, activamos su funcionalidad.
       if (selector === '#header-placeholder') {
         setupMobileMenu();
+        setupContactModal();
       }
     })
     .catch(error => console.error(`Error en loadComponent:`, error));
