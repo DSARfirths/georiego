@@ -24,23 +24,50 @@ const loadComponent = (selector, filePath) => {
 };
 
 /**
- * Configura la funcionalidad del menú hamburguesa.
+ * Configura la funcionalidad del menú lateral (Off-Canvas).
  */
 const setupMobileMenu = () => {
-  const hamburgerButton = document.getElementById('hamburger-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const openIcon = document.getElementById('menu-open-icon');
-  const closeIcon = document.getElementById('menu-close-icon');
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const mobileMenuContainer = document.getElementById('mobile-menu-container');
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const openIcon = document.getElementById('menu-open-icon');
+    const closeIcon = document.getElementById('menu-close-icon');
 
-  if (hamburgerButton && mobileMenu && openIcon && closeIcon) {
-    hamburgerButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('is-open');
-      const isOpen = mobileMenu.classList.contains('is-open');
-      openIcon.style.display = isOpen ? 'none' : 'block';
-      closeIcon.style.display = isOpen ? 'block' : 'none';
-    });
-  }
+    const toggleMenu = (isOpen) => {
+        document.body.classList.toggle('mobile-menu-is-open', isOpen);
+        if (openIcon && closeIcon) {
+            openIcon.style.display = isOpen ? 'none' : 'block';
+            closeIcon.style.display = isOpen ? 'block' : 'none';
+        }
+    };
+
+    if (hamburgerButton && mobileMenuContainer) {
+        hamburgerButton.addEventListener('click', () => {
+            const isMenuOpen = document.body.classList.contains('mobile-menu-is-open');
+            toggleMenu(!isMenuOpen);
+        });
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', () => toggleMenu(false));
+    }
 };
+
+/**
+ * El bloque ÚNICO que se ejecuta cuando la página está lista.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    // Usamos las rutas relativas
+    loadComponent('#header-placeholder', 'partials/header.html');
+    loadComponent('#mobile-menu-placeholder', 'partials/mobile-menu.html'); // <-- AÑADE ESTA LÍNEA
+    loadComponent('#footer-placeholder', 'partials/footer.html');
+    
+    // Llamamos a todas las demás funciones de inicialización
+    setupScrollAnimations();
+    setupServiceFilters();
+    setupLightbox();
+    // La llamada a setupContactModal y setupMobileMenu se hace dentro de loadComponent
+});
 
 /**
  * Configura las animaciones que se activan al hacer scroll.
@@ -159,6 +186,33 @@ const setupContactModal = () => {
     if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
 };
 
+/**
+ * Configura animaciones escalonadas para elementos dentro de un contenedor.
+ */
+const setupStaggeredAnimations = () => {
+    const containersToStagger = document.querySelectorAll('.divisions-grid, .why-us-grid, .products-grid, .solutions-grid, .team-grid, .gallery-grid');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const elements = entry.target.children;
+                for (let i = 0; i < elements.length; i++) {
+                    elements[i].style.transitionDelay = `${i * 100}ms`; // 100ms de retraso entre cada item
+                    elements[i].classList.add('visible');
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    containersToStagger.forEach(container => {
+        // Ocultamos los hijos inicialmente
+        Array.from(container.children).forEach(child => {
+            child.classList.add('stagger-item');
+        });
+        observer.observe(container);
+    });
+};
 
 /**
  * El bloque ÚNICO que se ejecuta cuando la página está lista.
@@ -169,6 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadComponent('#footer-placeholder', 'partials/footer.html');
   
   // Llamamos a todas las demás funciones de inicialización
+  setupStaggeredAnimations();
   setupScrollAnimations();
   setupServiceFilters();
   setupLightbox();

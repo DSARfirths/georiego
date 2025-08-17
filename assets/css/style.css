@@ -14,6 +14,7 @@ body {
   background-color: #FFFFFF;
   color: var(--gris-oscuro);
   line-height: 1.6;
+  padding-top: 5rem;
 }
 
 /* --- Clases de Contenedor y Headers de Sección --- */
@@ -127,24 +128,30 @@ body {
 }
 
 .division-card {
-  position: relative;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  text-decoration: none;
-  height: 400px;
-  display: block;
+    position: relative;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    text-decoration: none;
+    height: 400px;
+    display: block;
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* <-- Transición añadida */
+}
+
+.division-card:hover {
+    transform: translateY(-8px); /* <-- Se levanta un poco más */
+    box-shadow: 0 15px 30px rgba(0, 80, 130, 0.2); /* <-- Sombra más pronunciada y con color */
 }
 
 .division-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease-out;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease-out;
 }
 
 .division-card:hover img {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 .card-overlay {
@@ -414,7 +421,7 @@ body {
   background-color: var(--azul-georiego);
   color: white;
   font-weight: 700;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.2rem;
   border-radius: 0.5rem;
   text-decoration: none;
   transition: background-color 0.3s;
@@ -439,37 +446,60 @@ body {
   color: var(--gris-oscuro);
 }
 
-.mobile-menu {
-    display: none;
-    flex-direction: column; /* Ya estaba en la clase .is-open, lo movemos aquí */
-    position: fixed; /* Clave: lo fija a la ventana del navegador */
-    top: 5rem; /* Empieza justo donde termina el header (80px) */
+.mobile-menu-container {
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - 5rem); /* Clave: ocupa el 100% de la altura menos el header */
+    height: 100%;
+    z-index: 1500;
+    /* Oculto por defecto, controlado por JS */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.mobile-menu-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.mobile-menu {
+    position: absolute;
+    top: 0;
+    right: 0; /* Lo posicionamos a la derecha */
+    width: 80%;
+    max-width: 320px; /* Un ancho máximo para tablets */
+    height: 100%;
     background-color: white;
-    z-index: 999;
-    padding: 1.5rem; /* Añadimos espacio interior */
-    overflow-y: auto; /* Permite scroll si hay muchos enlaces */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 1.5rem;
+    gap: 1rem;
+    /* Sale de la pantalla por defecto */
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Esta clase es la que nuestro JavaScript va a alternar */
-.mobile-menu.is-open {
-  display: flex; /* Lo hace visible como un contenedor flex */
-  flex-direction: column;
+/* --- ESTADO ABIERTO --- */
+/* Esta clase se añadirá al <body> */
+body.mobile-menu-is-open {
+    overflow: hidden; /* Evita que el fondo se mueva */
 }
 
-.mobile-menu a {
-  display: block;
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  color: var(--gris-oscuro);
-  font-weight: 500;
+body.mobile-menu-is-open .mobile-menu-container {
+    opacity: 1;
+    visibility: visible;
 }
 
-.mobile-menu a:hover {
-  background-color: var(--gris-claro);
+body.mobile-menu-is-open .mobile-menu {
+    transform: translateX(0); /* Lo trae a la vista */
 }
 
 .mobile-cta {
@@ -1269,4 +1299,16 @@ body {
     .mission-vision-values { grid-template-columns: repeat(3, 1fr); }
     .contact-layout { grid-template-columns: 2fr 1fr; }
     .form-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* --- Estilos para Animación Stagger --- */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.stagger-item.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
