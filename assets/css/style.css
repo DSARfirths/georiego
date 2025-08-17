@@ -529,8 +529,6 @@ body {
   }
 }
 
-/* AÑADIR ESTO AL FINAL DE style.css */
-
 /* --- Estilos para Animaciones de Scroll --- */
 .animate-on-scroll {
   opacity: 0; /* Empieza invisible */

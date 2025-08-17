@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadComponent('#footer-placeholder', 'partials/footer.html');
   
   // Llamamos a todas las demás funciones de inicialización
-  setTimeout(setupMobileMenu, 500);
+  setupMobileMenu();
   setupScrollAnimations();
   setupServiceFilters();
   setupLightbox();
