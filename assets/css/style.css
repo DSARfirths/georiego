@@ -14,7 +14,6 @@ body {
   background-color: #FFFFFF;
   color: var(--gris-oscuro);
   line-height: 1.6;
-  padding-top: 5rem;
 }
 
 /* --- Clases de Contenedor y Headers de Sección --- */
@@ -295,16 +294,17 @@ body {
 .footer-social-icons-reinvigorated a {
   color: var(--gris-oscuro);
   transition: color 0.3s, transform 0.3s;
-  display: inline-block; /* Importante para que la transformación funcione bien */
+  display: inline-block;
 }
 
 .footer-social-icons-reinvigorated a:hover {
-  transform: scale(1.15) translateY(-2px); /* Efecto de "levantamiento" */
+  transform: scale(1.15) translateY(-2px);
 }
 
-.footer-social-icons-reinvigorated svg {
-  width: 2rem;
-  height: 2rem;
+/* Apuntamos a la etiqueta <i> de Font Awesome */
+.footer-social-icons-reinvigorated i {
+  font-size: 2rem; /* Ajustamos el tamaño del ícono */
+  line-height: 1;
 }
 
 /* Colores específicos para cada icono en hover */
@@ -1311,4 +1311,56 @@ body.mobile-menu-is-open .mobile-menu {
 .stagger-item.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* --- Estilos de Contenido del Menú Lateral --- */
+.mobile-menu-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--gris-oscuro);
+    font-size: 1.75rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+}
+
+.mobile-menu-nav {
+    margin-top: 4rem; /* Espacio para el botón de cierre */
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #eee;
+}
+
+.mobile-menu-nav a {
+    text-decoration: none;
+    color: var(--gris-oscuro);
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s;
+}
+
+.mobile-menu-nav a:hover {
+    background-color: var(--gris-claro);
+}
+
+/* El botón de contacto dentro del menú */
+.mobile-menu .mobile-cta {
+    margin-top: auto; /* Empuja el botón al final */
+    padding: 1rem;
+    background-color: var(--azul-georiego);
+    color: white !important;
+    text-align: center;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s;
+}
+
+.mobile-menu .mobile-cta:hover {
+    background-color: #0073b6 !important;
 }
