@@ -39,8 +39,8 @@ const setupMobileMenu = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log('DOM cargado. Iniciando carga de componentes.');
-  loadComponent('#header-placeholder', '/partials/header.html');
-  loadComponent('#footer-placeholder', '/partials/footer.html');
+  loadComponent('#header-placeholder', 'partials/header.html');
+  loadComponent('#footer-placeholder', 'partials/footer.html');
 });
 
 // AÑADIMOS UNA NUEVA FUNCIÓN PARA LAS ANIMACIONES AL HACER SCROLL
@@ -65,9 +65,9 @@ const setupScrollAnimations = () => {
 
 // Y LLAMAR A LA FUNCIÓN DENTRO DEL EVENTO DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
-  loadComponent('#header-placeholder', '/partials/header.html');
-  loadComponent('#footer-placeholder', '/partials/footer.html');
-  setupScrollAnimations(); // <-- AÑADIR ESTA LÍNEA
+  loadComponent('#header-placeholder', 'partials/header.html');
+  loadComponent('#footer-placeholder', 'partials/footer.html');
+  setupScrollAnimations();
 });
 
 // AÑADIR ESTA FUNCIÓN A main.js
@@ -102,10 +102,10 @@ const setupServiceFilters = () => {
 
 // Y LLAMAR A LA FUNCIÓN DENTRO DEL EVENTO DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
-  loadComponent('#header-placeholder', '/partials/header.html');
-  loadComponent('#footer-placeholder', '/partials/footer.html');
+  loadComponent('#header-placeholder', 'partials/header.html');
+  loadComponent('#footer-placeholder', 'partials/footer.html');
   setupScrollAnimations();
-  setupServiceFilters(); // <-- AÑADIR ESTA LÍNEA
+  setupServiceFilters();
 });
 
 // AÑADIR ESTA FUNCIÓN A main.js
@@ -148,9 +148,9 @@ const setupLightbox = () => {
 
 // Y LLAMAR A LA FUNCIÓN DENTRO DEL EVENTO DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
-  loadComponent('#header-placeholder', '/partials/header.html');
-  loadComponent('#footer-placeholder', '/partials/footer.html');
+  loadComponent('#header-placeholder', 'partials/header.html');
+  loadComponent('#footer-placeholder', 'partials/footer.html');
   setupScrollAnimations();
   setupServiceFilters();
-  setupLightbox(); // <-- AÑADIR ESTA LÍNEA
+  setupLightbox();
 });
