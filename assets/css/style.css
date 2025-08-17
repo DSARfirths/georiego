@@ -403,113 +403,129 @@ body {
 }
 
 /* --- Estilos del Footer --- */
-.main-footer {
-  background-color: var(--gris-oscuro);
-  color: #a0aec0; /* Un gris más claro para el texto normal */
-  padding: 4rem 0;
+.footer-reinvigorated {
+  background-color: var(--gris-claro);
+  color: var(--gris-oscuro);
+  padding: 5rem 0 0 0;
 }
 
-.footer-grid {
+.footer-main-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 4rem;
 }
 
-.footer-column-logo {
-  grid-column: span 2; /* Ocupa todo el ancho en móvil */
-}
-
-.footer-logo {
+.footer-headline {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  color: var(--azul-georiego);
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
-.footer-column h4 {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 1rem;
+.footer-subheadline {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 500px;
+  line-height: 1.7;
 }
 
-.footer-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.footer-contact-info {
+  margin-top: 2rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-weight: 500;
 }
 
-.footer-column a {
-  color: #a0aec0;
+.footer-contact-info a {
+  color: var(--gris-oscuro);
   text-decoration: none;
   transition: color 0.3s;
 }
 
-.footer-column a:hover {
-  color: white;
+.footer-contact-info a:hover {
+  color: var(--azul-georiego);
 }
 
-.footer-contact-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
-
-.footer-contact-list svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  flex-shrink: 0;
-  margin-top: 0.125rem;
-}
-
-.footer-bottom-bar {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #4a5568;
-  display: flex;
-  flex-direction: column; /* Apilado en móvil */
-  align-items: center;
-  gap: 1rem;
-  text-align: center;
-  font-size: 0.875rem;
-}
-
-.footer-social-icons {
+.footer-social-icons-reinvigorated {
+  margin-top: 2rem;
   display: flex;
   gap: 1.5rem;
 }
 
-.footer-social-icons a {
-  color: #a0aec0;
-  transition: color 0.3s;
+.footer-social-icons-reinvigorated a {
+  color: var(--gris-oscuro);
+  transition: color 0.3s, transform 0.3s;
 }
 
-.footer-social-icons a:hover {
+.footer-social-icons-reinvigorated a:hover {
+  color: var(--azul-georiego);
+  transform: scale(1.1);
+}
+
+.footer-social-icons-reinvigorated svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.footer-locations-block {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.location-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.location-card h5 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  margin: 0 0 1rem 0;
+}
+
+.map-container {
+  border-radius: 0.25rem;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.location-button {
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+  background-color: var(--verde-cultivo);
   color: white;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background-color 0.3s;
 }
 
-.footer-social-icons svg {
-  width: 1.5rem;
-  height: 1.5rem;
+.location-button:hover {
+  background-color: #00692d; /* Verde más oscuro */
 }
 
-/* --- Media Query para Escritorio --- */
-@media (min-width: 768px) {
-  .footer-grid {
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas en escritorio */
-  }
+.footer-bottom-bar-reinvigorated {
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #777;
+  border-top: 1px solid #ddd;
+}
 
-  .footer-column-logo {
-    grid-column: span 1; /* Ocupa 1 columna en escritorio */
+@media (min-width: 992px) {
+  .footer-main-grid {
+    grid-template-columns: 1fr 1fr;
   }
-
-  .footer-bottom-bar {
-    flex-direction: row; /* Lado a lado en escritorio */
-    justify-content: space-between;
+  .footer-locations-block {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -788,70 +804,47 @@ body {
 }
 
 /* --- Estilos para el Lightbox con CTA --- */
+.basicLightbox:after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6 18L18 6M6 6l12 12' /%3E%3C/svg%3E") no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
 .lightbox-container {
-  /* Usamos flexbox para centrar y organizar el contenido verticalmente */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem; /* Espacio entre la imagen y el caption */
-  padding: 1rem; /* Un pequeño padding general */
+  gap: 1.5rem;
+  padding: 1rem;
 }
 
 .lightbox-container img {
   display: block;
   max-width: 100%;
-  max-height: 75vh; /* Limita la altura de la imagen para que el botón no se salga de la pantalla */
+  max-height: 75vh;
   width: auto;
   height: auto;
   border-radius: 4px;
 }
 
-.lightbox-caption {
-  text-align: center;
-}
-
 .whatsapp-cta-button {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background-color: #25D366; /* Verde WhatsApp */
-  color: white;
-  font-family: var(--font-sans);
-  font-weight: 700;
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px; /* Píldora */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.whatsapp-cta-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.whatsapp-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  /* El icono heredará el color de su contenedor (el botón) */
-  color: var(--verde-cultivo);
-}
-
-.whatsapp-cta-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  /* Cambiamos el fondo a blanco para que el logo verde resalte */
   background-color: white; 
-  /* Y el texto del botón también será verde */
   color: var(--verde-cultivo);
   font-family: var(--font-sans);
   font-weight: 700;
   text-decoration: none;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
-  border: 2px solid var(--verde-cultivo); /* Añadimos un borde verde */
+  border: 2px solid var(--verde-cultivo);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   white-space: nowrap;
@@ -864,7 +857,13 @@ body {
   color: white;
 }
 
-/* Es importante que el ícono también cambie a blanco en el hover */
 .whatsapp-cta-button:hover .whatsapp-icon {
   color: white;
+}
+
+.whatsapp-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--verde-cultivo);
+  transition: color 0.3s ease;
 }

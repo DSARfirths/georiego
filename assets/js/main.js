@@ -1,5 +1,8 @@
-// assets/js/main.js
-
+/**
+ * Carga un componente HTML desde una ruta y lo inyecta en un selector.
+ * @param {string} selector - El selector CSS del elemento contenedor (ej. '#header-placeholder').
+ * @param {string} filePath - La ruta al archivo HTML del componente (ej. 'partials/header.html').
+ */
 const loadComponent = (selector, filePath) => {
   const element = document.querySelector(selector);
   if (!element) return;
@@ -11,14 +14,17 @@ const loadComponent = (selector, filePath) => {
     })
     .then(data => {
       element.innerHTML = data;
+      // Si acabamos de cargar el header, activamos su funcionalidad.
       if (selector === '#header-placeholder') {
-        console.log('Header cargado, iniciando setup del menú...');
         setupMobileMenu();
       }
     })
     .catch(error => console.error(`Error en loadComponent:`, error));
 };
 
+/**
+ * Configura la funcionalidad del menú hamburguesa.
+ */
 const setupMobileMenu = () => {
   const hamburgerButton = document.getElementById('hamburger-button');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -27,107 +33,73 @@ const setupMobileMenu = () => {
 
   if (hamburgerButton && mobileMenu && openIcon && closeIcon) {
     hamburgerButton.addEventListener('click', () => {
-      // Alternamos una clase 'is-open' en el panel del menú.
       mobileMenu.classList.toggle('is-open');
-      
-      // Mostramos/ocultamos el ícono de abrir/cerrar
-      openIcon.style.display = mobileMenu.classList.contains('is-open') ? 'none' : 'block';
-      closeIcon.style.display = mobileMenu.classList.contains('is-open') ? 'block' : 'none';
+      const isOpen = mobileMenu.classList.contains('is-open');
+      openIcon.style.display = isOpen ? 'none' : 'block';
+      closeIcon.style.display = isOpen ? 'block' : 'none';
     });
   }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log('DOM cargado. Iniciando carga de componentes.');
-  loadComponent('#header-placeholder', 'partials/header.html');
-  loadComponent('#footer-placeholder', 'partials/footer.html');
-});
-
-// AÑADIMOS UNA NUEVA FUNCIÓN PARA LAS ANIMACIONES AL HACER SCROLL
+/**
+ * Configura las animaciones que se activan al hacer scroll.
+ */
 const setupScrollAnimations = () => {
   const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-  
+  if (elementsToAnimate.length === 0) return;
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // Para que la animación ocurra solo una vez
+        observer.unobserve(entry.target);
       }
     });
-  }, {
-    threshold: 0.1 // La animación se activa cuando el 10% del elemento es visible
-  });
+  }, { threshold: 0.1 });
 
-  elementsToAnimate.forEach(element => {
-    observer.observe(element);
-  });
+  elementsToAnimate.forEach(element => observer.observe(element));
 };
 
-// Y LLAMAR A LA FUNCIÓN DENTRO DEL EVENTO DOMContentLoaded
-document.addEventListener("DOMContentLoaded", () => {
-  loadComponent('#header-placeholder', 'partials/header.html');
-  loadComponent('#footer-placeholder', 'partials/footer.html');
-  setupScrollAnimations();
-});
-
-// AÑADIR ESTA FUNCIÓN A main.js
-
+/**
+ * Configura los filtros interactivos de la página de soluciones.
+ */
 const setupServiceFilters = () => {
   const filterContainer = document.querySelector('.filters');
-  if (!filterContainer) return; // Si no hay filtros en la página, no hace nada
+  if (!filterContainer) return;
 
   const filterButtons = filterContainer.querySelectorAll('.filter-btn');
   const serviceCards = document.querySelectorAll('.service-card');
 
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // Manejar el estilo del botón activo
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
+      const filter = button.dataset.filter;
 
-      const filter = button.getAttribute('data-filter');
-
-      // Mostrar/ocultar tarjetas de servicio
       serviceCards.forEach(card => {
-        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
       });
     });
   });
 };
 
-
-// Y LLAMAR A LA FUNCIÓN DENTRO DEL EVENTO DOMContentLoaded
-document.addEventListener("DOMContentLoaded", () => {
-  loadComponent('#header-placeholder', 'partials/header.html');
-  loadComponent('#footer-placeholder', 'partials/footer.html');
-  setupScrollAnimations();
-  setupServiceFilters();
-});
-
-// AÑADIR ESTA FUNCIÓN A main.js
-
+/**
+ * Configura la galería de imágenes con lightbox.
+ */
 const setupLightbox = () => {
-  const gallery = document.querySelector('#service-gallery');
-  if (!gallery) return;
-
-  gallery.addEventListener('click', function(event) {
-    const galleryLink = event.target.closest('.gallery-card');
-    
-    if (galleryLink) {
-      event.preventDefault();
+    const gallery = document.querySelector('#service-gallery');
+    if (!gallery) return;
+  
+    gallery.addEventListener('click', function(event) {
+      const galleryLink = event.target.closest('.gallery-card');
+      if (!galleryLink) return;
       
+      event.preventDefault();
       const imageUrl = galleryLink.href;
       const projectTitle = galleryLink.dataset.title || 'este proyecto';
-      const phoneNumber = '51999888777'; // <-- Reemplaza con tu número de WhatsApp
-
+      const phoneNumber = '51999888777'; // Reemplaza con tu número
       const message = encodeURIComponent(`Hola Georiego, vi el proyecto "${projectTitle}" en su web y estoy interesado/a en una cotización.`);
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-
-      // Contenido del lightbox con el nuevo SVG
       const lightboxContent = `
         <div class="lightbox-container">
           <img src="${imageUrl}" alt="${projectTitle}">
@@ -137,19 +109,21 @@ const setupLightbox = () => {
               <span>Cotizar Proyecto Similar</span>
             </a>
           </div>
-        </div>
-      `;
-      
+        </div>`;
       basicLightbox.create(lightboxContent).show();
-    }
-  });
-};
+    });
+  };
 
-
-// Y LLAMAR A LA FUNCIÓN DENTRO DEL EVENTO DOMContentLoaded
+/**
+ * El bloque ÚNICO que se ejecuta cuando la página está lista.
+ */
 document.addEventListener("DOMContentLoaded", () => {
+  // Usamos las rutas relativas que funcionan en tu entorno de GitHub Pages
   loadComponent('#header-placeholder', 'partials/header.html');
   loadComponent('#footer-placeholder', 'partials/footer.html');
+  
+  // Llamamos a todas las demás funciones de inicialización
+  setTimeout(setupMobileMenu, 500);
   setupScrollAnimations();
   setupServiceFilters();
   setupLightbox();
