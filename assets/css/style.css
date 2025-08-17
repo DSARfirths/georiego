@@ -347,11 +347,21 @@ body {
 }
 
 .mobile-menu {
-  display: none; /* Oculto por defecto, JS lo controla */
-  flex-direction: column;
+  display: none; /* Empieza oculto */
+  position: absolute; /* Lo saca del flujo normal del documento */
+  top: 100%; /* Se posiciona justo debajo del header */
+  left: 0;
+  width: 100%;
   background-color: white;
   border-top: 1px solid #e5e7eb;
-  padding: 1rem 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra para que destaque */
+  z-index: 999; /* Asegura que esté por encima del contenido */
+}
+
+/* Esta clase es la que nuestro JavaScript va a alternar */
+.mobile-menu.is-open {
+  display: flex; /* Lo hace visible como un contenedor flex */
+  flex-direction: column;
 }
 
 .mobile-menu a {
@@ -372,6 +382,7 @@ body {
   color: white !important;
   text-align: center;
   border-radius: 0.5rem;
+  padding: 0.75rem;
 }
 
 .mobile-cta:hover {

@@ -20,28 +20,20 @@ const loadComponent = (selector, filePath) => {
 };
 
 const setupMobileMenu = () => {
-  console.log('Buscando elementos del menú...');
   const hamburgerButton = document.getElementById('hamburger-button');
   const mobileMenu = document.getElementById('mobile-menu');
   const openIcon = document.getElementById('menu-open-icon');
   const closeIcon = document.getElementById('menu-close-icon');
 
-  // --> NUESTRO PRIMER DETECTIVE: ¿Encontramos los elementos?
-  console.log('Botón del menú encontrado:', hamburgerButton);
-  console.log('Panel del menú encontrado:', mobileMenu);
-
-  if (hamburgerButton && mobileMenu) {
-    console.log('Elementos encontrados, añadiendo el listener de clic.');
+  if (hamburgerButton && mobileMenu && openIcon && closeIcon) {
     hamburgerButton.addEventListener('click', () => {
-      // --> NUESTRO SEGUNDO DETECTIVE: ¿Funciona el clic?
-      console.log('¡Botón clickeado!');
+      // Alternamos una clase 'is-open' en el panel del menú.
+      mobileMenu.classList.toggle('is-open');
       
-      mobileMenu.classList.toggle('hidden');
-      openIcon.classList.toggle('hidden');
-      closeIcon.classList.toggle('hidden');
+      // Mostramos/ocultamos el ícono de abrir/cerrar
+      openIcon.style.display = mobileMenu.classList.contains('is-open') ? 'none' : 'block';
+      closeIcon.style.display = mobileMenu.classList.contains('is-open') ? 'block' : 'none';
     });
-  } else {
-    console.error('No se pudieron encontrar los elementos del menú. Revisa los IDs en header.html.');
   }
 };
 
