@@ -380,7 +380,7 @@ body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 1600;
   width: 100%;
   overflow: visible;
 }
@@ -1051,6 +1051,8 @@ body.mobile-menu-is-open .mobile-menu {
     text-align: center;
     transform: scale(0.9);
     transition: transform 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .contact-modal.is-visible .modal-content {
