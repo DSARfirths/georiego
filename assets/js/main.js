@@ -234,3 +234,161 @@ document.addEventListener("DOMContentLoaded", () => {
   setupLightbox();
   setupContactModal();
 });
+
+/**
+ * ===================================================================
+ * LÓGICA DE LA PÁGINA DE PRODUCTOS
+ * ===================================================================
+ */
+
+// Función que se ejecuta cuando el DOM está listo
+document.addEventListener('DOMContentLoaded', () => {
+    // Solo ejecuta el código del catálogo si estamos en la página de productos
+    if (document.getElementById('product-catalog')) {
+        initCatalogPage();
+    }
+});
+
+// Función principal para inicializar la página del catálogo
+function initCatalogPage() {
+    renderCategories(georiegoProducts);
+    renderProducts(georiegoProducts);
+    setupCategoryFilters();
+    setupFloatingSearch();
+}
+
+/**
+ * Dibuja las tarjetas de producto en el DOM.
+ * @param {Array} productsToRender - El array de productos a mostrar.
+ */
+function renderProducts(productsToRender) {
+    const catalogContainer = document.getElementById('product-catalog');
+    
+    if (productsToRender.length === 0) {
+        catalogContainer.innerHTML = '<p class="catalog-no-results">No se encontraron productos que coincidan con su búsqueda.</p>';
+        return;
+    }
+
+    const productsHTML = productsToRender.map(product => createProductCardHTML(product)).join('');
+    catalogContainer.innerHTML = productsHTML;
+}
+
+/**
+ * Crea el string HTML para una sola tarjeta de producto.
+ * @param {Object} product - El objeto del producto.
+ * @returns {string} El HTML de la tarjeta.
+ */
+function createProductCardHTML(product) {
+    const message = encodeURIComponent(`Hola Georiego, estoy interesado/a en el producto "${product.nombre}". ¿Podrían darme más información?`);
+    const whatsappURL = `https://wa.me/51993813122?text=${message}`; // Usa tu número de WhatsApp aquí
+
+    return `
+        <div class="product-card-catalog" data-category="${product.categoria}">
+            <div class="product-card-image">
+                <img src="${product.imagen}" alt="${product.nombre}">
+            </div>
+            <div class="product-card-content">
+                <h3>${product.nombre}</h3>
+                <p>${product.descripcion}</p>
+                <a href="${whatsappURL}" target="_blank" class="product-cta-button">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Consultar Precio</span>
+                </a>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * Genera y muestra los botones de filtro de categoría.
+ * @param {Array} allProducts - El array completo de todos los productos.
+ */
+function renderCategories(allProducts) {
+    const filtersContainer = document.getElementById('category-filters');
+    const categories = ['all', ...new Set(allProducts.map(p => p.categoria))];
+
+    const categoriesHTML = categories.map(category => {
+        const isActive = category === 'all' ? 'active' : '';
+        const categoryName = category === 'all' ? 'Ver Todo' : category.charAt(0).toUpperCase() + category.slice(1);
+        return `<button class="filter-btn ${isActive}" data-category="${category}">${categoryName}</button>`;
+    }).join('');
+
+    filtersContainer.innerHTML = categoriesHTML;
+}
+
+/**
+ * Configura los event listeners para los botones de filtro.
+ */
+function setupCategoryFilters() {
+    const filtersContainer = document.getElementById('category-filters');
+
+    filtersContainer.addEventListener('click', (event) => {
+        if (event.target.tagName !== 'BUTTON') return;
+
+        // Manejar clase activa
+        filtersContainer.querySelector('.active').classList.remove('active');
+        event.target.classList.add('active');
+        
+        // Filtrar y renderizar
+        const selectedCategory = event.target.dataset.category;
+        const filteredProducts = selectedCategory === 'all' 
+            ? georiegoProducts 
+            : georiegoProducts.filter(p => p.categoria === selectedCategory);
+        
+        renderProducts(filteredProducts);
+    });
+}
+
+/**
+ * Configura la funcionalidad de AMBOS buscadores (flotante y estático).
+ */
+function setupFloatingSearch() {
+    // Selectores para todos los elementos de búsqueda
+    const openBtn = document.getElementById('open-search-btn');
+    const searchModal = document.getElementById('search-modal');
+    const closeBtn = document.getElementById('search-close-btn');
+    const overlay = document.getElementById('search-modal-overlay');
+    const modalInput = document.getElementById('search-input');
+    const staticInput = document.getElementById('static-search-input');
+
+    // Función para abrir/cerrar el modal
+    const toggleSearchModal = (show) => {
+        searchModal.classList.toggle('is-visible', show);
+    };
+
+    // Eventos para el modal
+    openBtn.addEventListener('click', () => toggleSearchModal(true));
+    closeBtn.addEventListener('click', () => toggleSearchModal(false));
+    overlay.addEventListener('click', () => toggleSearchModal(false));
+
+    // Función reutilizable para manejar la búsqueda
+    const handleSearch = (searchTerm) => {
+        const lowerCaseTerm = searchTerm.toLowerCase().trim();
+        const filteredProducts = georiegoProducts.filter(product =>
+            product.nombre.toLowerCase().includes(lowerCaseTerm) ||
+            product.descripcion.toLowerCase().includes(lowerCaseTerm)
+        );
+        renderProducts(filteredProducts);
+
+        // Desactiva los filtros de categoría cuando se busca
+        const activeFilter = document.querySelector('#category-filters .active');
+        if (activeFilter) activeFilter.classList.remove('active');
+        // Coloca un "placeholder" o estado neutro si existe un botón "Ver Todo"
+        const allButton = document.querySelector('#category-filters .filter-btn[data-category="all"]');
+        if(allButton && searchTerm !== '') allButton.classList.add('active');
+    };
+
+    // Sincronizar y buscar desde el input del MODAL
+    modalInput.addEventListener('input', (event) => {
+        const searchTerm = event.target.value;
+        staticInput.value = searchTerm; // Sincroniza
+        handleSearch(searchTerm);
+    });
+
+    // Sincronizar y buscar desde el input ESTÁTICO
+    staticInput.addEventListener('input', (event) => {
+        const searchTerm = event.target.value;
+        modalInput.value = searchTerm; // Sincroniza
+        handleSearch(searchTerm);
+    });
+}
