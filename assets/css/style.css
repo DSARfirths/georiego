@@ -865,7 +865,7 @@ body.mobile-menu-is-open .mobile-menu {
   height: 40vh;
   min-height: 300px;
   /* La imagen de fondo se cambiará para cada servicio */
-  background-image: url('https://images.pexels.com/photos/2252482/pexels-photo-2252482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-image: url('../images/riego-por-goteo.jpeg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -1010,7 +1010,7 @@ body.mobile-menu-is-open .mobile-menu {
   }
 }
 
-/* AÑADIR ESTO AL FINAL DE style.css */
+/* Estilos para el Lightbox con CTA */
 
 .gallery-card {
   display: block;
