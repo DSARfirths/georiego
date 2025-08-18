@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
     <div id="header-placeholder"></div>
@@ -22,7 +26,8 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Nuestro Catálogo de Productos</h2>
-                    <p>Encuentra todo lo que necesitas para tu proyecto, o utiliza el buscador para encontrar un producto específico.</p>
+                    <p>Encuentra todo lo que necesitas para tu proyecto, o utiliza el buscador para encontrar un
+                        producto específico.</p>
                 </div>
 
                 <div class="static-search-container" id="static-search-container">
@@ -32,7 +37,7 @@
                 <div id="category-filters" class="filters"></div>
 
                 <div id="product-catalog" class="catalog-grid">
-                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -43,20 +48,42 @@
         </button>
     </div>
 
-    <div class="search-modal" id="search-modal">
-        <div class="search-modal-overlay" id="search-modal-overlay"></div>
-        <div class="search-box">
-            <input type="text" id="search-input" placeholder="Buscar por nombre o descripción...">
-            <button class="search-close-btn" id="search-close-btn" aria-label="Cerrar buscador">
-                <i class="fa-solid fa-xmark"></i>
+    <div class="contact-modal" id="contact-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close-btn" id="modal-close-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
             </button>
+            <h3>¿Cómo podemos ayudarte?</h3>
+            <p>Elige la opción que mejor se adapte a tu necesidad.</p>
+            <div class="modal-options">
+                <a href="https://wa.me/51993813122?text=Hola%20Georiego,%20tengo%20una%20consulta%20rápida."
+                    target="_blank" class="modal-option">
+                    <div class="option-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h4>Consulta Rápida</h4>
+                    <p>Ideal para preguntas puntuales. Te atenderemos por WhatsApp.</p>
+                </a>
+                <a href="contacto.html" class="modal-option">
+                    <div class="option-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h4>Cotización Formal</h4>
+                    <p>Para proyectos detallados. Rellena nuestro formulario de contacto.</p>
+                </a>
+            </div>
         </div>
     </div>
-    
+
     <div id="footer-placeholder"></div>
 
     <script src="assets/js/products-data.js"></script>
     <script src="assets/js/main.js"></script>
 
 </body>
+
 </html>

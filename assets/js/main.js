@@ -251,8 +251,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Función principal para inicializar la página del catálogo
 function initCatalogPage() {
+    // 1. Dibuja los botones de categoría primero, siempre.
     renderCategories(georiegoProducts);
-    renderProducts(georiegoProducts);
+
+    // 2. Revisa si hay una categoría en la URL (ej. #tuberias)
+    const categoryFromURL = window.location.hash.substring(1);
+
+    if (categoryFromURL) {
+        // 3a. Si existe, filtra los productos según esa categoría.
+        const filteredProducts = georiegoProducts.filter(p => p.categoria === categoryFromURL);
+        renderProducts(filteredProducts);
+
+        // 3b. Actualiza el botón de filtro para que se vea activo.
+        const filtersContainer = document.getElementById('category-filters');
+        const activeButton = filtersContainer.querySelector(`[data-category="${categoryFromURL}"]`);
+        
+        // Quita la clase 'active' del botón por defecto ("Ver Todo")
+        filtersContainer.querySelector('.active')?.classList.remove('active');
+        // Añade la clase 'active' al botón correcto si lo encuentra
+        if (activeButton) {
+            activeButton.classList.add('active');
+        }
+
+    } else {
+        // 4. Si no hay categoría en la URL, muestra todos los productos.
+        renderProducts(georiegoProducts);
+    }
+
+    // 5. Finalmente, configura los filtros y el buscador para futuros clics.
     setupCategoryFilters();
     setupFloatingSearch();
 }
