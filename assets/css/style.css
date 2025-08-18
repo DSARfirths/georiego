@@ -1,3 +1,8 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 /* --- Reseteo Básico y Variables Globales --- */
 :root {
   --azul-georiego: #0084D6;
@@ -285,41 +290,6 @@ body {
   margin-top: 3rem;
 }
 
-
-/* --- Estilos Corregidos para Iconos del Footer --- */
-.footer-social-icons-reinvigorated {
-  margin-top: 2rem;
-  display: flex;
-  gap: 1.5rem;
-}
-
-.footer-social-icons-reinvigorated a {
-  color: var(--gris-oscuro);
-  transition: color 0.3s, transform 0.3s;
-  display: inline-block;
-}
-
-.footer-social-icons-reinvigorated a:hover {
-  transform: scale(1.15) translateY(-2px);
-}
-
-/* Apuntamos a la etiqueta <i> de Font Awesome */
-.footer-social-icons-reinvigorated i {
-  font-size: 2rem; /* Ajustamos el tamaño del ícono */
-  line-height: 1;
-}
-
-/* Colores específicos para cada icono en hover */
-.footer-social-icons-reinvigorated a[aria-label="Facebook"]:hover {
-  color: #1877F2; /* Azul de Facebook */
-}
-.footer-social-icons-reinvigorated a[aria-label="TikTok"]:hover {
-  color: #000000; /* Negro de TikTok */
-}
-.footer-social-icons-reinvigorated a[aria-label="WhatsApp"]:hover {
-  color: #25D366; /* Verde de WhatsApp */
-}
-
 /* --- Estilos de la Sección CTA Final --- */
 .cta-section {
   padding: 5rem 0;
@@ -535,38 +505,42 @@ body.mobile-menu-is-open .mobile-menu {
   }
 }
 
-/* --- Estilos del Footer --- */
-.footer-reinvigorated {
+/* --- ESTILOS DEL NUEVO FOOTER --- */
+.main-footer-reimagined {
   background-color: var(--gris-claro);
   color: var(--gris-oscuro);
   padding: 5rem 0 0 0;
+  border-top: 1px solid #ddd;
 }
 
-.footer-main-grid {
+.footer-layout {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr; /* Una columna por defecto para móviles */
+  gap: 3rem;
+}
+
+.footer-logo-img {
+  max-width: 180px;
+  margin-bottom: 2rem;
 }
 
 .footer-headline {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 1rem 0;
+  font-size: 1.75rem;
+  margin: 0 0 1rem 0;
 }
 
 .footer-subheadline {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #555;
-  max-width: 500px;
   line-height: 1.7;
+  margin-bottom: 2rem;
 }
 
 .footer-contact-info {
-  margin-top: 2rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1rem;
+  flex-direction: column; /* Apilado en móviles */
+  gap: 1rem;
   font-weight: 500;
 }
 
@@ -574,38 +548,134 @@ body.mobile-menu-is-open .mobile-menu {
   color: var(--gris-oscuro);
   text-decoration: none;
   transition: color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .footer-contact-info a:hover {
   color: var(--azul-georiego);
 }
 
-.footer-social-icons-reinvigorated {
-  margin-top: 2rem;
+.footer-section-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  margin: 0 0 1rem 0;
+  color: var(--gris-oscuro);
+}
+
+/* El "lugar llamativo" para las redes sociales */
+.footer-socials-block {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+}
+
+.footer-social-icons {
   display: flex;
+  gap: 1rem;
+}
+
+.footer-social-icons a {
+  color: var(--gris-oscuro);
+  font-size: 1.75rem;
+  transition: all 0.3s ease;
+}
+.footer-social-icons a[aria-label="Facebook"]:hover { color: #1877F2; transform: scale(1.1); }
+.footer-social-icons a[aria-label="TikTok"]:hover { color: #000000; transform: scale(1.1); }
+.footer-social-icons a[aria-label="WhatsApp"]:hover { color: #25D366; transform: scale(1.1); }
+
+
+.location-cards-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Una columna en móvil */
   gap: 1.5rem;
 }
 
-.footer-social-icons-reinvigorated a {
-  color: var(--gris-oscuro);
-  transition: color 0.3s, transform 0.3s;
+.location-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.footer-social-icons-reinvigorated a:hover {
+.location-card h6 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.map-container {
+  border-radius: 0.25rem;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.location-button {
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+  background-color: var(--verde-cultivo);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background-color 0.3s;
+}
+.location-button:hover {
+  background-color: #00692d;
+}
+
+/* La barra final con copyright y créditos */
+.footer-bottom-bar {
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #777;
+  border-top: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; /* Apilado en móvil */
+  gap: 0.5rem;
+}
+
+.developer-credit a {
   color: var(--azul-georiego);
-  transform: scale(1.1);
+  text-decoration: none;
+  font-weight: 500;
+}
+.developer-credit a:hover {
+  text-decoration: underline;
 }
 
-.footer-social-icons-reinvigorated svg {
-  width: 2rem;
-  height: 2rem;
+/* --- Media Queries para Escritorio --- */
+@media (min-width: 992px) {
+  .footer-layout {
+    grid-template-columns: 1fr 1fr; /* Dos columnas en escritorio */
+    gap: 4rem;
+  }
+  .footer-contact-info {
+    flex-direction: row; /* En línea en escritorio */
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+  .location-cards-container {
+    grid-template-columns: 1fr 1fr; /* Dos columnas para mapas */
+  }
+  .footer-bottom-bar {
+    flex-direction: row; /* En línea en escritorio */
+    justify-content: space-between;
+  }
 }
 
-.footer-locations-block {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
+/* --- Estilos de la página "Ubicaciones" --- */
 
 .location-card {
   background-color: white;
@@ -642,32 +712,6 @@ body.mobile-menu-is-open .mobile-menu {
 
 .location-button:hover {
   background-color: #00692d; /* Verde más oscuro */
-}
-
-.footer-bottom-bar-reinvigorated {
-  margin-top: 4rem;
-  padding: 1.5rem 0;
-  text-align: center;
-  font-size: 0.875rem;
-  color: #777;
-  border-top: 1px solid #ddd;
-}
-
-.footer-social-icons-reinvigorated a[aria-label="WhatsApp"]:hover {
-  color: #25D366; /* Verde WhatsApp */
-}
-
-.footer-social-icons-reinvigorated a[aria-label="TikTok"]:hover {
-  color: #000000; /* Negro TikTok */
-}
-
-@media (min-width: 992px) {
-  .footer-main-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .footer-locations-block {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 /* --- Estilos para Animaciones de Scroll --- */
@@ -1065,13 +1109,12 @@ body.mobile-menu-is-open .mobile-menu {
 @media (max-width: 768px) {
   .contact-modal {
     align-items: flex-start;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .modal-content {
-    /* Calculamos la altura máxima restando los paddings superior e inferior */
-    max-height: calc(100vh - 6rem);
+    max-height: calc(100vh - 4rem);
   }
 }
 
