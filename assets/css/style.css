@@ -48,7 +48,7 @@ body {
   position: relative;
   height: 75vh;
   min-height: 500px;
-  background-image: url('assets/images/Reservorios \(6).jpg'); /* Cambia la URL a tu imagen de fondo */
+  background-image: url('assets/images/Reservorios \(6).jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -1124,6 +1124,16 @@ body.mobile-menu-is-open .mobile-menu {
     .modal-options {
         grid-template-columns: 1fr 1fr;
     }
+}
+
+/* --- Ajuste para Modal en Móviles --- */
+@media (max-width: 768px) {
+  .contact-modal {
+    /* Cambiamos la alineación vertical para que empiece desde arriba */
+    align-items: flex-start;
+    /* Añadimos un padding superior para crear el espacio que necesitas */
+    padding-top: 3rem; 
+  }
 }
 
 /* --- Estilos para Páginas Genéricas (Nosotros, Contacto, etc.) --- */
