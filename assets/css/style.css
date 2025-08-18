@@ -68,7 +68,7 @@ body {
 
 @media (max-width: 768px) {
   .hero-section {
-    height: 100vh;
+    height: 100svh;
     min-height: 0;
     padding-top: 5rem;
     display: flex;
