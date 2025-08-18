@@ -48,7 +48,9 @@ body {
   position: relative;
   height: 75vh;
   min-height: 500px;
-  background-image: url('assets/images/Reservorios \(6).jpg');
+  /* La ruta correcta es ../ para "subir" un nivel desde la carpeta /css */
+  /* También se recomienda renombrar el archivo sin espacios ni paréntesis, por ejemplo: 'reservorio-hero.jpg' */
+  background-image: url('../images/Reservorios (6).jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -1059,6 +1061,17 @@ body.mobile-menu-is-open .mobile-menu {
     transform: scale(1);
 }
 
+/* --- Ajuste para Modal en Móviles --- */
+@media (max-width: 768px) {
+  .contact-modal {
+    /* Cambiamos la alineación vertical para que empiece desde arriba */
+    align-items: flex-start;
+    /* Añadimos un padding superior para crear el espacio que necesitas */
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
 .modal-content h3 {
     font-family: var(--font-heading);
     font-size: 2rem;
@@ -1124,16 +1137,6 @@ body.mobile-menu-is-open .mobile-menu {
     .modal-options {
         grid-template-columns: 1fr 1fr;
     }
-}
-
-/* --- Ajuste para Modal en Móviles --- */
-@media (max-width: 768px) {
-  .contact-modal {
-    /* Cambiamos la alineación vertical para que empiece desde arriba */
-    align-items: flex-start;
-    /* Añadimos un padding superior para crear el espacio que necesitas */
-    padding-top: 3rem; 
-  }
 }
 
 /* --- Estilos para Páginas Genéricas (Nosotros, Contacto, etc.) --- */

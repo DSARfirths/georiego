@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Georiego</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
     <div id="header-placeholder"></div>
     <div id="mobile-menu-placeholder"></div>
 
     <main>
-        <section class="page-hero-section" style="background-image: url('https://images.pexels.com/photos/48148/document-business-macbook-pen-48148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+        <section class="page-hero-section"
+            style="background-image: url('https://images.pexels.com/photos/48148/document-business-macbook-pen-48148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
             <div class="page-hero-overlay"></div>
             <div class="container">
                 <h1>Hablemos de tu Proyecto</h1>
@@ -72,12 +77,12 @@
                     <div class="contact-info-container">
                         <h3>Información de Contacto</h3>
                         <p>Si prefieres, puedes contactarnos directamente a través de estos canales.</p>
-                        
+
                         <div class="contact-info-item">
                             <h4><i class="fas fa-envelope"></i> Correo Electrónico</h4>
                             <a href="mailto:ventas@georiego.com">ventas@georiego.com</a>
                         </div>
-                        
+
                         <div class="contact-info-item">
                             <h4><i class="fas fa-phone-alt"></i> Teléfonos</h4>
                             <a href="tel:+51966211673">+51 966 211 673</a><br>
@@ -99,5 +104,37 @@
     <div id="footer-placeholder"></div>
     <div class="contact-modal" id="contact-modal"></div>
     <script src="assets/js/main.js"></script>
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script> </body>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <div class="contact-modal" id="contact-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close-btn" id="modal-close-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <h3>¿Cómo podemos ayudarte?</h3>
+            <p>Elige la opción que mejor se adapte a tu necesidad.</p>
+            <div class="modal-options">
+                <a href="https://wa.me/51993813122?text=Hola%20Georiego,%20tengo%20una%20consulta%20rápida."
+                    target="_blank" class="modal-option">
+                    <div class="option-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h4>Consulta Rápida</h4>
+                    <p>Ideal para preguntas puntuales. Te atenderemos por WhatsApp.</p>
+                </a>
+                <a href="contacto.html" class="modal-option">
+                    <div class="option-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h4>Cotización Formal</h4>
+                    <p>Para proyectos detallados. Rellena nuestro formulario de contacto.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
