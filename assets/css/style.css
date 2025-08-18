@@ -1064,11 +1064,14 @@ body.mobile-menu-is-open .mobile-menu {
 /* --- Ajuste para Modal en Móviles --- */
 @media (max-width: 768px) {
   .contact-modal {
-    /* Cambiamos la alineación vertical para que empiece desde arriba */
     align-items: flex-start;
-    /* Añadimos un padding superior para crear el espacio que necesitas */
     padding-top: 3rem;
     padding-bottom: 3rem;
+  }
+
+  .modal-content {
+    /* Calculamos la altura máxima restando los paddings superior e inferior */
+    max-height: calc(100vh - 6rem);
   }
 }
 
