@@ -225,6 +225,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById('product-catalog')) {
         initCatalogPage();
     }
+    
+    setupContactForm(); 
 });
 
 
@@ -357,6 +359,57 @@ function setupProductSearch() {
             const searchTerm = event.target.value;
             if (modalInput) modalInput.value = searchTerm;
             handleSearch(searchTerm);
+        });
+    }
+}
+
+/**
+ * Configura el formulario de contacto para enviarlo con AJAX sin recargar la página.
+ */
+function setupContactForm() {
+    const form = document.getElementById('contact-form');
+    const confirmationMessage = document.getElementById('confirmation-message');
+    const closeConfirmationBtn = document.getElementById('close-confirmation-btn');
+    const whatsappNotifyBtn = document.getElementById('whatsapp-notify-btn');
+
+    if (!form) return; // No hacer nada si el formulario no está en la página actual
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // <-- Esto evita la redirección a Formspree
+
+        const formData = new FormData(form);
+        const formAction = form.action;
+
+        fetch(formAction, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                // 1. Mostrar el mensaje de confirmación
+                confirmationMessage.classList.add('is-visible');
+
+                // 2. Preparar el botón de WhatsApp
+                const nombre = formData.get('name') || 'un cliente';
+                const message = encodeURIComponent(`¡Hola Georiego! Soy ${nombre} y les acabo de enviar una cotización formal desde la web.`);
+                whatsappNotifyBtn.href = `https://wa.me/51993813122?text=${message}`; // <-- Usa tu número de WhatsApp aquí
+
+                // 3. Limpiar el formulario
+                form.reset();
+            } else {
+                alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+            }
+        }).catch(error => {
+            alert('Hubo un error de red. Por favor, revisa tu conexión e inténtalo de nuevo.');
+        });
+    });
+
+    // Lógica para cerrar el mensaje de confirmación
+    if (closeConfirmationBtn) {
+        closeConfirmationBtn.addEventListener('click', () => {
+            confirmationMessage.classList.remove('is-visible');
         });
     }
 }
