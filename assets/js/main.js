@@ -19,6 +19,7 @@ const loadComponent = (selector, filePath) => {
             if (selector === '#header-placeholder') {
                 setupMobileMenu(); // Llama a la configuración del menú aquí.
                 setupContactModal();
+                setupHeaderScroll(); // Activa el efecto de scroll en el header
             }
         })
         .catch(error => console.error(`Error en loadComponent:`, error));
@@ -202,6 +203,88 @@ const setupContactModal = () => {
     if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
 };
 
+/**
+ * Controla el cambio de estilo del header al hacer scroll para el efecto de transparencia.
+ */
+const setupHeaderScroll = () => {
+    const header = document.querySelector('.main-header');
+    if (!header) return;
+ 
+    let lastScrollY = window.scrollY;
+    const scrollThreshold = 50; // Píxeles para el efecto 'scrolled'
+    const hideThreshold = 100;  // Píxeles antes de empezar a ocultar el header
+
+    const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+
+        // Lógica para el efecto de fondo y tamaño (scrolled)
+        if (currentScrollY > scrollThreshold) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+
+        // Lógica para ocultar/mostrar al hacer scroll
+        if (currentScrollY > hideThreshold) {
+            if (currentScrollY > lastScrollY) {
+                // Scroll hacia abajo: ocultar header
+                header.classList.add('header-hidden');
+            } else {
+                // Scroll hacia arriba: mostrar header
+                header.classList.remove('header-hidden');
+            }
+        } else {
+            // Siempre mostrar el header si estamos cerca de la parte superior
+            header.classList.remove('header-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+    };
+
+    // Usamos { passive: true } para mejorar el rendimiento del scroll
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Ejecuta la función una vez al cargar para establecer el estado inicial
+};
+
+/**
+ * Aplica un efecto parallax a la imagen de fondo de la sección hero.
+ */
+const setupParallaxEffect = () => {
+    const heroSection = document.querySelector('.hero-section');
+    if (!heroSection) return;
+
+    const handleParallaxScroll = () => {
+        const scrollPosition = window.scrollY;
+        // El factor 0.5 controla la velocidad del efecto. Puedes ajustarlo.
+        heroSection.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+    };
+
+    window.addEventListener('scroll', handleParallaxScroll, { passive: true });
+};
+
+/**
+ * Controla la barra de progreso de lectura en la parte superior de la página.
+ */
+const setupReadingProgress = () => {
+    const progressBar = document.getElementById('progressBar');
+    if (!progressBar) return;
+
+    const handleProgressScroll = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+        // Evitar división por cero si la página no tiene scroll
+        if (docHeight === 0) {
+            progressBar.style.width = '0%';
+            return;
+        }
+
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = `${scrollPercent}%`;
+    };
+
+    window.addEventListener('scroll', handleProgressScroll, { passive: true });
+};
 
 /**
  * ===================================================================
@@ -220,6 +303,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setupScrollAnimations();
     setupServiceFilters();
     setupLightbox();
+    setupParallaxEffect(); // <-- Llamamos a la nueva función parallax
+    setupReadingProgress(); // <-- Llamamos a la función de la barra de progreso
 
     // 3. Si estamos en la página de catálogo, inicializa su lógica específica.
     if (document.getElementById('product-catalog')) {
