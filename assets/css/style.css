@@ -575,7 +575,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1500;
+  z-index: 1800; /* Aumentado para que esté por encima del header (1600) y la barra de progreso (1700) */
   /* Oculto por defecto, controlado por JS */
   opacity: 0;
   visibility: hidden;
